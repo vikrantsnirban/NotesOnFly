@@ -12,18 +12,25 @@ public final class ServiceDelegator {
 	public static UserService getUserService(){
 		if(Configurations.provider.equals("filesystem"))
 				return new UserServiceImpl();
+		
+		if(Configurations.provider.equals("db"))
+			return new net.versatile.notesonflyservice.providers.db.mysql.UserServiceImpl();
 		return null;
 	}
 	
 	public static NoteBookService getNoteBookService(){
 		if(Configurations.provider.equals("filesystem"))
 				return new NoteBookServiceImpl();
+		if(Configurations.provider.equals("db"))
+			return new net.versatile.notesonflyservice.providers.db.mysql.NoteBookServiceImpl();
 		return null;
 	}
 	
 	public static NoteService getNoteService(){
 		if(Configurations.provider.equals("filesystem"))
 				return new NoteServiceImpl();
+		if(Configurations.provider.equals("db"))
+			return new net.versatile.notesonflyservice.providers.db.mysql.NoteServiceImpl();
 		return null;
 	}
 }

@@ -34,7 +34,7 @@ public class UserController {
 		user.setLastName(lastName);
 		user.setEmailAddress(emailAddress);
 		user.setAddress(address);
-		ServiceDelegator.getUserService().addUser(user);
+		ServiceDelegator.getUserService().updateUser(user);
 	}
 	
 	@RequestMapping("/user/delete")
