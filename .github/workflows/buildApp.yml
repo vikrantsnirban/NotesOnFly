@@ -6,15 +6,34 @@ jobs:
     steps:
       - name: Source Checkout
         uses: actions/checkout@v2
-      
+
+      - name: Maven Build    
+        run: mvn clean install
+        
+      - name : Upload Artefact
+        uses: actions/upload-artifact@v2
+        with:	
+          name: 'NotesOnFly-RestAPI-0.0.1-SNAPSHOT'	
+          path: 'NotesOnFly-RestAPI/target/NotesOnFly-RestAPI-0.0.1-SNAPSHOT.jar'
+
+
+  S3:
+    runs-on: ubuntu-latest
+    steps:
       - name: AWS Credentials Setup
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Maven Build    
-        run: mvn clean install
+        
+      - name : Dowload Artefact
+        uses: actions/download-artifact@v2
+        with:	
+          name: 'NotesOnFly-RestAPI-0.0.1-SNAPSHOT'	
+
+      - name: Verify downloaded Artefact
+        run: ls -R
         
       - name: Push to S3
         run: aws s3 cp NotesOnFly-RestAPI/target/NotesOnFly-RestAPI-0.0.1-SNAPSHOT.jar s3://notesonfly
