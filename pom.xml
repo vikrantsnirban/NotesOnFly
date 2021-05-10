@@ -9,5 +9,4 @@
 		<module>NotesOnFly-CLI </module>
 		<module>NotesOnFly-RestAPI </module>
 	</modules>
-	
 </project>
