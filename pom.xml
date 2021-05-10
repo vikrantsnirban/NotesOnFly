@@ -4,11 +4,9 @@
   <artifactId>NotesOnFly</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-
 	<modules>
 		<module>NotesOnFly-Service </module>
 		<module>NotesOnFly-CLI </module>
 		<module>NotesOnFly-RestAPI </module>
 	</modules>
-	
 </project>
