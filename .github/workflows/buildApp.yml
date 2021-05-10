@@ -37,7 +37,7 @@ jobs:
         run: ls -R
         
       - name: Push to S3
-        run: aws s3 cp NotesOnFly-RestAPI/target/NotesOnFly-RestAPI-0.0.1-SNAPSHOT.jar s3://notesonfly
+        run: aws s3 NotesOnFly-RestAPI-0.0.1-SNAPSHOT.jar s3://notesonfly
 
  
       
