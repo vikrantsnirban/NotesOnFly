@@ -16,41 +16,17 @@ public class NoteBookServiceImpl implements NoteBookService {
 		String sqlQuery = "INSERT INTO NOTEBOOK VALUES (\""+  notebook.getUserName() 
 		+"\", \"" + notebook.getNoteBookName()
 		+ "\")";
-		Connection connection;
-		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			statement.execute(sqlQuery);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	
-
+		
+		System.out.println("sqlQuery:\n" + sqlQuery);
+		System.out.println("Record(s) Added: " + DBManager.executeSQL(sqlQuery));
 	}
 
 	public void deleteNoteBook(NoteBook notebook) {
 		
 		String sqlQuery = "DELETE FROM NOTEBOOK WHERE USERNAME = " + "\"" + notebook.getUserName() + "\" and NOTEBOOKNAME = \"" + notebook.getNoteBookName()+ "\"";
-		System.out.println(sqlQuery);
+		System.out.println("sqlQuery:\n" + sqlQuery);
+		System.out.println("Record(s) Deleted: " + DBManager.executeSQL(sqlQuery));
 
-
-		Connection connection;
-		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			statement.executeUpdate(sqlQuery);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-	
-		
 	}
 
 	public List<NoteBook> listNoteBooks() {
@@ -58,22 +34,17 @@ public class NoteBookServiceImpl implements NoteBookService {
 		List<NoteBook> noteBooks = new ArrayList<NoteBook>();
 		
 		String sqlQuery = "SELECT * FROM NOTEBOOK";
+		System.out.println("sqlQuery:\n" + sqlQuery);
 		
-		Connection connection;
 		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			ResultSet usersFromDB = statement.executeQuery(sqlQuery);
-			while(usersFromDB.next()){
+			ResultSet noteBookResultSet = DBManager.fetchResults(sqlQuery);
+			while(noteBookResultSet.next()){
 				NoteBook noteBook = new NoteBook();
-				noteBook.setUserName(usersFromDB.getString("USERNAME"));
-				noteBook.setNoteBookName(usersFromDB.getString("NOTEBOOKNAME"));
+				noteBook.setUserName(noteBookResultSet.getString("USERNAME"));
+				noteBook.setNoteBookName(noteBookResultSet.getString("NOTEBOOKNAME"));
 				noteBooks.add(noteBook);
 			}
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return noteBooks;
@@ -85,28 +56,20 @@ public class NoteBookServiceImpl implements NoteBookService {
 		List<NoteBook> noteBooks = new ArrayList<NoteBook>();
 		
 		String sqlQuery = "SELECT * FROM NOTEBOOK WHERE USERNAME = " + "\"" + userName + "\"";
+		System.out.println("sqlQuery:\n" + sqlQuery);
 		
-		Connection connection;
 		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			ResultSet usersFromDB = statement.executeQuery(sqlQuery);
-			while(usersFromDB.next()){
+			ResultSet noteBookResultSet = DBManager.fetchResults(sqlQuery);
+			while(noteBookResultSet.next()){
 				NoteBook noteBook = new NoteBook();
-				noteBook.setUserName(usersFromDB.getString("USERNAME"));
-				noteBook.setNoteBookName(usersFromDB.getString("NOTEBOOKNAME"));
+				noteBook.setUserName(noteBookResultSet.getString("USERNAME"));
+				noteBook.setNoteBookName(noteBookResultSet.getString("NOTEBOOKNAME"));
 				noteBooks.add(noteBook);
 			}
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return noteBooks;
-	
-	
-		
 	}
 
 }

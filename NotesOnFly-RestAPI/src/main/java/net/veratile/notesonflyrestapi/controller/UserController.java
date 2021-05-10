@@ -16,29 +16,29 @@ public class UserController {
 	
 	
 	@RequestMapping("/user/add")
-	public void addUser(@RequestParam(value = "userName", defaultValue = "defaultuser") String userName, @RequestParam(value = "firstName", defaultValue = "FIRST-NAME") String firstName, @RequestParam(value = "lastName", defaultValue = "LAST=NAME") String lastName, @RequestParam(value = "emailAddress", defaultValue = "EMAIL-ADDRESS") String emailAddress, @RequestParam(value = "address", defaultValue = "ADDRESS") String address) {
+	public void addUser(@RequestParam(value = "userName", defaultValue = "DEFAULT-USER") String userName, @RequestParam(value = "firstName", defaultValue = "DEFAULT-FIRSTNAME") String firstName, @RequestParam(value = "lastName", defaultValue = "DEFAULT-LASTNAME") String lastName, @RequestParam(value = "email", defaultValue = "DEFAULT-EMAIL") String email, @RequestParam(value = "address", defaultValue = "DEFAULT-ADDRESS") String address) {
 		User user = new User();
 		user.setUserName(userName);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		user.setEmailAddress(emailAddress);
+		user.setEmailAddress(email);
 		user.setAddress(address);
 		ServiceDelegator.getUserService().addUser(user);
 	}
 	
 	@RequestMapping("/user/update")
-	public void updateUser(@RequestParam(value = "userName", defaultValue = "defaultuser") String userName, @RequestParam(value = "firstName", defaultValue = "FIRST-NAME") String firstName, @RequestParam(value = "lastName", defaultValue = "LAST=NAME") String lastName, @RequestParam(value = "emailAddress", defaultValue = "EMAIL-ADDRESS") String emailAddress, @RequestParam(value = "address", defaultValue = "ADDRESS") String address) {
+	public void updateUser(@RequestParam(value = "userName", defaultValue = "DEFAULT-USER") String userName, @RequestParam(value = "firstName", defaultValue = "DEFAULT-FIRSTNAME") String firstName, @RequestParam(value = "lastName", defaultValue = "DEFAULT-LASTNAME") String lastName, @RequestParam(value = "email", defaultValue = "DEFAULT-EMAIL") String email, @RequestParam(value = "address", defaultValue = "DEFAULT-ADDRESS") String address) {
 		User user = new User();
 		user.setUserName(userName);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		user.setEmailAddress(emailAddress);
+		user.setEmailAddress(email);
 		user.setAddress(address);
 		ServiceDelegator.getUserService().updateUser(user);
 	}
 	
 	@RequestMapping("/user/delete")
-	public void deleteUser(@RequestParam(value = "userName", defaultValue = "defaultuser") String userName){
+	public void deleteUser(@RequestParam(value = "userName", defaultValue = "DEFAULT-USER") String userName){
 		ServiceDelegator.getUserService().deleteUser(userName);
 	}
 }

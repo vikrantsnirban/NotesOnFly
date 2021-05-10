@@ -1,18 +1,12 @@
 package net.versatile.notesonflyservice.providers.db.mysql;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import net.versatile.notesonflyservice.bo.Note;
 import net.versatile.notesonflyservice.bo.NoteBook;
-import net.versatile.notesonflyservice.bo.config.Configurations;
 import net.versatile.notesonflyservice.definitions.NoteService;
 
 public class NoteServiceImpl implements NoteService{
@@ -24,19 +18,8 @@ public class NoteServiceImpl implements NoteService{
 		+"\", \"" + note.getNoteTitle()
 		+"\", \"" + note.getNoteContent() 
 		+ "\")";
-		Connection connection;
-		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			statement.execute(sqlQuery);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-	
+		System.out.println("sqlQuery:\n" + sqlQuery);
+		System.out.println("Record(s) Added: " + DBManager.executeSQL(sqlQuery));
 	}
 
 	public void updateNote(Note note) {
@@ -48,20 +31,8 @@ public class NoteServiceImpl implements NoteService{
 							+ "\", NOTECONTENT = " + "\"" + note.getNoteContent()
 							+ "\" WHERE USERNAME = \"" + note.getNoteBook().getUserName() 
 							+ "\" AND NOTEBOOKNAME = \"" + note.getNoteBook().getNoteBookName() + "\"";
-
-		System.out.println(sqlQuery);
-		Connection connection;
-		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			statement.execute(sqlQuery);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+		System.out.println("sqlQuery:\n" + sqlQuery);
+		System.out.println("Record(s) Updated: " + DBManager.executeSQL(sqlQuery));
 	}
 
 
@@ -70,55 +41,34 @@ public class NoteServiceImpl implements NoteService{
 		+ note.getNoteBook().getUserName() + "\" AND NOTEBOOKNAME = \""
 		+ note.getNoteBook().getNoteBookName() + "\" AND NOTENAME = \""
 		+ note.getNoteName() + "\"";
-		System.out.println(sqlQuery);
-
-
-		Connection connection;
-		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			statement.executeUpdate(sqlQuery);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-	
+		System.out.println("sqlQuery:\n" + sqlQuery);
+		System.out.println("Record(s) Deleted: " + DBManager.executeSQL(sqlQuery));
 	}
 
 	public List<Note> listAllNotes() {
 		List<Note> notes = new ArrayList<Note>();
 		
 		String sqlQuery = "SELECT * FROM NOTE";
+		System.out.println("sqlQuery:\n" + sqlQuery);
 		
-		Connection connection;
 		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			ResultSet usersFromDB = statement.executeQuery(sqlQuery);
-			while(usersFromDB.next()){
+			ResultSet noteResultSet = DBManager.fetchResults(sqlQuery);
+			while(noteResultSet.next()){
 				NoteBook noteBook = new NoteBook();
-				noteBook.setUserName(usersFromDB.getString("USERNAME"));
-				noteBook.setNoteBookName(usersFromDB.getString("NOTEBOOKNAME"));
+				noteBook.setUserName(noteResultSet.getString("USERNAME"));
+				noteBook.setNoteBookName(noteResultSet.getString("NOTEBOOKNAME"));
 				Note note = new Note();
 				note.setNoteBook(noteBook);
-				note.setNoteName(usersFromDB.getString("NOTENAME"));
-				note.setNoteTitle(usersFromDB.getString("NOTETITLE"));
-				note.setNoteContent(usersFromDB.getString("NOTECONTENT"));
+				note.setNoteName(noteResultSet.getString("NOTENAME"));
+				note.setNoteTitle(noteResultSet.getString("NOTETITLE"));
+				note.setNoteContent(noteResultSet.getString("NOTECONTENT"));
 				notes.add(note);
 
 			}
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return notes;
-	
-		
 	}
 
 	public List<Note> listNotesForUserNoteBook(String userName, String noteBookName) {
@@ -128,25 +78,22 @@ public class NoteServiceImpl implements NoteService{
 		String sqlQuery = "SELECT * FROM NOTE WHERE USERNAME = \"" 
 		+ userName + "\" AND NOTEBOOKNAME = \"" + noteBookName + "\"";
 		
-		Connection connection;
+		System.out.println("sqlQuery:\n" + sqlQuery);
+		
 		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			ResultSet usersFromDB = statement.executeQuery(sqlQuery);
-			while(usersFromDB.next()){
+			ResultSet noteResultSet = DBManager.fetchResults(sqlQuery);
+			while(noteResultSet.next()){
 				NoteBook noteBook = new NoteBook();
-				noteBook.setUserName(usersFromDB.getString("USERNAME"));
-				noteBook.setNoteBookName(usersFromDB.getString("NOTEBOOKNAME"));
+				noteBook.setUserName(noteResultSet.getString("USERNAME"));
+				noteBook.setNoteBookName(noteResultSet.getString("NOTEBOOKNAME"));
 				Note note = new Note();
 				note.setNoteBook(noteBook);
-				note.setNoteName(usersFromDB.getString("NOTENAME"));
-				note.setNoteTitle(usersFromDB.getString("NOTETITLE"));
-				note.setNoteContent(usersFromDB.getString("NOTECONTENT"));
+				note.setNoteName(noteResultSet.getString("NOTENAME"));
+				note.setNoteTitle(noteResultSet.getString("NOTETITLE"));
+				note.setNoteContent(noteResultSet.getString("NOTECONTENT"));
 				notes.add(note);
 
 			}
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -162,32 +109,26 @@ public class NoteServiceImpl implements NoteService{
 		String sqlQuery = "SELECT * FROM NOTE WHERE USERNAME = \"" 
 				+ userName  + "\"";
 		
-		Connection connection;
+		System.out.println("sqlQuery:\n" + sqlQuery);
+		
 		try {
-			connection = DBInitializer.getDBConnection();
-			Statement statement = connection.createStatement();
-			ResultSet usersFromDB = statement.executeQuery(sqlQuery);
-			while(usersFromDB.next()){
+			ResultSet noteResultSet = DBManager.fetchResults(sqlQuery);
+			while(noteResultSet.next()){
 				NoteBook noteBook = new NoteBook();
-				noteBook.setUserName(usersFromDB.getString("USERNAME"));
-				noteBook.setNoteBookName(usersFromDB.getString("NOTEBOOKNAME"));
+				noteBook.setUserName(noteResultSet.getString("USERNAME"));
+				noteBook.setNoteBookName(noteResultSet.getString("NOTEBOOKNAME"));
 				Note note = new Note();
 				note.setNoteBook(noteBook);
-				note.setNoteName(usersFromDB.getString("NOTENAME"));
-				note.setNoteTitle(usersFromDB.getString("NOTETITLE"));
-				note.setNoteContent(usersFromDB.getString("NOTECONTENT"));
+				note.setNoteName(noteResultSet.getString("NOTENAME"));
+				note.setNoteTitle(noteResultSet.getString("NOTETITLE"));
+				note.setNoteContent(noteResultSet.getString("NOTECONTENT"));
 				notes.add(note);
 
 			}
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return notes;
-	
-		
 	}
 
 }
