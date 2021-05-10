@@ -11,5 +11,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - run: mvn clean install
-      - run: aws s3 sync ./out s3://notesonfly
+      - run: aws s3 sync NotesOnFly-RestAPI/target s3://notesonfly
 
