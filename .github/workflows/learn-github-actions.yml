@@ -1,7 +1,7 @@
-name: learn-github-actions
+name: build-s3
 on: [push]
 jobs:
-  check-bats-version:
+  notesonfly:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,5 +11,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - run: mvn clean install
-      - run: aws s3 sync NotesOnFly-RestAPI/target s3://notesonfly
+      - run: aws s3 cp NotesOnFly-RestAPI/target/NotesOnFly-RestAPI-0.0.1-SNAPSHOT.jar s3://notesonfly
 
