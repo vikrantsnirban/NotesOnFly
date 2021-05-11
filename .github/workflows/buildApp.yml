@@ -13,7 +13,7 @@ jobs:
       - name : Upload Artefact
         uses: actions/upload-artifact@v2
         with:	
-          name: 'NotesOnFly-RestAPI-0.0.1-SNAPSHOT'	
+          name: 'NotesOnFly-RestAPI'	
           path: 'NotesOnFly-RestAPI/target/NotesOnFly-RestAPI-0.0.1-SNAPSHOT.jar'
 
 
@@ -31,7 +31,7 @@ jobs:
       - name : Dowload Artefact
         uses: actions/download-artifact@v2
         with:	
-          name: 'NotesOnFly-RestAPI-0.0.1-SNAPSHOT'	
+          name: 'NotesOnFly-RestAPI'	
 
       - name: Verify downloaded Artefact
         run: ls -R
