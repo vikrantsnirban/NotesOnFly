@@ -8,5 +8,6 @@
 		<module>NotesOnFly-Service </module>
 		<module>NotesOnFly-CLI </module>
 		<module>NotesOnFly-RestAPI </module>
+		<module>NotesOnFly-Lambda </module>
 	</modules>
 </project>
