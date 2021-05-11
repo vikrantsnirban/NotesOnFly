@@ -1,5 +1,7 @@
 package net.veratile.notesonflyrestapi.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,14 +18,13 @@ public class NoteController {
 
 		if (!userName.equals("")) {
 			if (!noteBookName.equals("")) {
-				return ServiceDelegator.getNoteService().listNotesForUserNoteBook(userName, noteBookName).toString()
-						.replaceAll(",", "<br/>");
+				return formatNotesForHTML(ServiceDelegator.getNoteService().listNotesForUserNoteBook(userName, noteBookName));
 			}
 
-			return ServiceDelegator.getNoteService().listNotesForUser(userName).toString().replaceAll(",", "<br/>");
+			return formatNotesForHTML(ServiceDelegator.getNoteService().listNotesForUser(userName));
 		}
-
-		return ServiceDelegator.getNoteService().listAllNotes().toString().replaceAll(",", "<br/>");
+		return formatNotesForHTML(ServiceDelegator.getNoteService().listAllNotes());
+		
 	}
 	
 	@RequestMapping("/note/add")
@@ -64,5 +65,17 @@ public class NoteController {
 		note.setNoteBook(noteBook);
 		note.setNoteName(noteName);
 		ServiceDelegator.getNoteService().deleteNote(note);
+	}
+	
+	private String formatNotesForHTML(List<Note> notes){
+		StringBuilder notesToDisplay = new StringBuilder();
+		for(Note note: notes){
+			notesToDisplay.append("<h1>" + note.getNoteTitle() + "</h1>");
+			notesToDisplay.append("<i>" + note.getNoteBook().getUserName() + " : " +  note.getNoteBook().getNoteBookName() + "</i>");
+			notesToDisplay.append("<p>" + note.getNoteContent() + "</p>");
+			notesToDisplay.append("<hr/>");
+			
+		}
+		return notesToDisplay.toString();
 	}
 }

@@ -1,0 +1,49 @@
+JavaProgrammer,Control Statements,Java If-else,Java If-else,Java If-else
+JavaProgrammer,Control Statements,Java Switch,Java Switch,Java Switch
+JavaProgrammer,Control Statements,Java For Loop,Java For Loop,Java For Loop
+JavaProgrammer,Control Statements,Java While Loop,Java While Loop,Java While Loop
+JavaProgrammer,Control Statements,Java Do While Loop,Java Do While Loop,Java Do While Loop
+JavaProgrammer,Control Statements,Java Break,Java Break,Java Break
+JavaProgrammer,Control Statements,Java Continue,Java Continue,Java Continue
+JavaProgrammer,Control Statements,Java Comments,Java Comments,Java Comments
+JavaProgrammer,Control Statements,Java Programs,Java Programs,Java Programs
+JavaProgrammer,Java Polymorphism,Method Overloading,Method Overloading,Method Overloading
+JavaProgrammer,Java Polymorphism,Method Overriding,Method Overriding,Method Overriding
+JavaProgrammer,Java Polymorphism,Covariant Return Type,Covariant Return Type,Covariant Return Type
+JavaProgrammer,Java Polymorphism,super keyword,super keyword,super keyword
+JavaProgrammer,Java Polymorphism,Instance Initializer block,Instance Initializer block,Instance Initializer block
+JavaProgrammer,Java Polymorphism,final keyword,final keyword,final keyword
+JavaProgrammer,Java Polymorphism,Runtime Polymorphism,Runtime Polymorphism,Runtime Polymorphism
+JavaProgrammer,Java Polymorphism,Dynamic Binding,Dynamic Binding,Dynamic Binding
+JavaProgrammer,Java Polymorphism,instanceof operator,instanceof operator,instanceof operator
+JavaProgrammer,Java OOPs Misc,Object class,Object class,Object class
+JavaProgrammer,Java OOPs Misc,Object Cloning,Object Cloning,Object Cloning
+JavaProgrammer,Java OOPs Misc,Math class,Math class,Math class
+JavaProgrammer,Java OOPs Misc,Wrapper Class,Wrapper Class,Wrapper Class
+JavaProgrammer,Java OOPs Misc,Java Recursion,Java Recursion,Java Recursion
+JavaProgrammer,Java OOPs Misc,Call By Value,Call By Value,Call By Value
+JavaProgrammer,Java OOPs Misc,strictfp keyword,strictfp keyword,strictfp keyword
+JavaProgrammer,Java OOPs Misc,javadoc tool,javadoc tool,javadoc tool
+JavaProgrammer,Java OOPs Misc,Command Line Arg,Command Line Arg,Command Line Arg
+JavaProgrammer,Java OOPs Misc,Object vs Class,Object vs Class,Object vs Class
+JavaProgrammer,Java OOPs Misc,Overloading vs Overriding,Overloading vs Overriding,Overloading vs Overriding
+JavaProgrammer,Java Object Class,Java OOPs Concepts,Java OOPs Concepts,Java OOPs Concepts
+JavaProgrammer,Java Object Class,Naming Convention,Naming Convention,Naming Convention
+JavaProgrammer,Java Object Class,Object and Class,Object and Class,Object and Class
+JavaProgrammer,Java Object Class,Method,Method,Method
+JavaProgrammer,Java Object Class,Constructor,Constructor,Constructor
+JavaProgrammer,Java Object Class,static keyword,static keyword,static keyword
+JavaProgrammer,Java Object Class,this keyword,this keyword,this keyword
+JavaPublisher,Java Version,JDK Alpha and Beta,JDK Alpha and Beta,The Java Alpha and Beta was the first releasesbut they have highly unstable APIs and ABIs. The supplied Java web browser was named WebRunner.
+JavaPublisher,Java Version,JDK 1.0,JDK 1.0,It was the first stable released version of Java. Its codename was Oak.The first stable version of JDK was JDK 1.0.2 and it was called Java 1.
+JavaPublisher,Java Version,JDK 1.1,JDK 1.1,Some additions were included to this version. i.e.
+JavaPublisher,Java Version,J2SE 1.2,J2SE 1.2,Its codename was Playground. First time, it was called J2SE (Java 2 Platform, Standard Edition) .It replaced JDK to recognize the base platform from J2EE (Java 2 Platform, Enterprise Edition) and J2ME(Java 2 Platform, Micro Edition) .It was a very important java release as it tripled the size of the Java platform to 1520 classes in 59 packages.
+JavaPublisher,Java Version,J2SE 1.3,J2SE 1.3,Its codename was Kestrel. Some additions were included to this version. i.e.
+JavaPublisher,Java Version,J2SE 1.4,J2SE 1.4,Its codename was Merlin. It was the first Java platform which was released under the Java Community Process.
+JavaPublisher,Java Version,J2SE 5.0,J2SE 5.0,Its codename was Tiger. It was originally numbered 1.5, which is still used as the internal version number. So, it was changed to 5.0 to "better reflect the level of maturity, stability, scalability and security of the J2SE". This process also was released under the Java Community Process.
+JavaPublisher,Java Version,Java SE 6,Java SE 6,Its codename was Mustang. After the release of this version, Java replaced the name J2SE to Java SE and dropped the .0 from the version number.
+JavaPublisher,Java Version,Java SE 7,Java SE 7,Its codename was Dolphin. It was launched on 7, July 2011 but was made available for developers on July 28, 2011.
+JavaPublisher,Java Version,Java SE 8,Java SE 8,Its codename was Spider. Although, codenames have been discontinued, but the codename Spider is common among java developers.
+JavaPublisher,Java Version,Java SE 9,Java SE 9,In 2016, Oracle discussed some features to release in Java 9. It was hoped that Java 9 would include better support for multi-gigabyte heaps, better native code integration, a different default garbage collector and a self-tuning JVM. The release of Java 9 was postponed many times and finally it was released on September 21, 2017.
+JavaPublisher,Java Version,Java SE 10,Java SE 10,Java SE 10 was released to remove primitive data types and move towards 64-bit addressable arrays to support large data sets.It was released on 20 March 2018, with twelve new features confirmed. These features are:
+JavaPublisher,Java Version,Java SE 11,Java SE 11,It is currently open for bug fixing. 
